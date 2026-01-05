@@ -12,6 +12,6 @@ export const jsonResponse = (
       message,
       data,
     },
-    status
+    200
   );
 };

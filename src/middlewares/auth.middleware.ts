@@ -1,7 +1,7 @@
 import { createMiddleware } from 'hono/factory';
 import { jwt } from 'hono/jwt';
-import { jsonResponse } from '../utils/response';
-import { JwtPayload } from '../utils/jwt';
+import { jsonResponse } from '../utils/response.ts';
+import { JwtPayload } from '../utils/jwt.ts';
 
 export const authMiddleware = createMiddleware(async (c, next) => {
   const auth = jwt({

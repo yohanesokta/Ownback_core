@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { registerUserHandler, loginUserHandler } from '../handlers/auth.handler';
+import { registerUserHandler, loginUserHandler } from '../handlers/auth.handler.ts';
 
 const auth = new Hono();
 

@@ -1,8 +1,8 @@
 import { Context } from 'hono';
 import { z } from 'zod';
-import { registerUserService, loginUserService } from '../services/auth.service';
-import { jsonResponse } from '../utils/response';
-import { registerSchema, loginSchema } from '../validations/auth.validation';
+import { registerUserService, loginUserService } from '../services/auth.service.ts';
+import { jsonResponse } from '../utils/response.ts';
+import { registerSchema, loginSchema } from '../validations/auth.validation.ts';
 
 export const registerUserHandler = async (c: Context) => {
   try {

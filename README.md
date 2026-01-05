@@ -13,7 +13,8 @@ Proyek ini dibangun dengan fokus pada struktur kode yang bersih, scalable, dan m
 - **Runtime**: Bun
 - **Framework API**: Hono
 - **Database**: Supabase (PostgreSQL)
-- **ORM**: Prisma
+- **DB Adapter**: node-postgres (`pg`)
+- **Migrations**: `node-pg-migrate`
 - **Authentication**: JWT (JSON Web Tokens)
 - **Validation**: Zod
 
@@ -38,12 +39,12 @@ Proyek ini dibangun dengan fokus pada struktur kode yang bersih, scalable, dan m
     -   `JWT_SECRET`: Kunci rahasia yang kuat dan acak untuk menandatangani token JWT. Anda bisa membuat string acak yang panjang.
 
 4.  **Migrasi Database:**
-    Setelah mengkonfigurasi `DATABASE_URL`, jalankan perintah berikut untuk membuat tabel database sesuai dengan skema Prisma.
+    Setelah mengkonfigurasi `DATABASE_URL`, jalankan perintah berikut untuk menerapkan migrasi dan membuat tabel database.
 
     ```bash
-    bunx prisma migrate dev --name init
+    bun run migrate up
     ```
-    Perintah ini akan membuat migrasi pertama Anda dan menerapkan skemanya ke database Supabase.
+    Perintah ini akan menjalankan semua migrasi yang tertunda yang ada di dalam direktori `/migrations`.
 
 ## Menjalankan Proyek
 
@@ -63,7 +64,8 @@ Proyek ini siap untuk di-deploy ke Vercel.
 2.  Impor proyek Anda di dashboard Vercel.
 3.  Vercel akan secara otomatis mendeteksi bahwa ini adalah proyek Bun.
 4.  **Konfigurasi Environment Variables** di pengaturan proyek Vercel Anda (sama seperti di file `.env`).
-5.  Deploy!
+5.  Tambahkan `build` command di Vercel: `bun run migrate up`
+6.  Deploy!
 
 Vercel akan menangani build process dan deployment.
 
@@ -159,9 +161,7 @@ Mendapatkan profil pengguna yang sedang login.
     "profilePictureUrl": "https://example.com/profile.jpg",
     "description": "Hello, I'm new here!",
     "createdAt": "2026-01-05T14:00:00.000Z",
-    "_count": {
-      "posts": 10
-    }
+    "posts": "10"
   }
 }
 ```
@@ -184,9 +184,7 @@ Mendapatkan profil publik pengguna lain berdasarkan ID.
         "profilePictureUrl": "https://example.com/jane.jpg",
         "description": "Photographer",
         "createdAt": "2026-01-04T10:00:00.000Z",
-        "_count": {
-            "posts": 25
-        }
+        "posts": "25"
     }
 }
 ```
@@ -259,8 +257,8 @@ Membuat postingan baru.
     "createdAt": "2026-01-05T15:00:00.000Z",
     "updatedAt": "2026-01-05T15:00:00.000Z",
     "images": [
-      { "id": "clx-img-1", "url": "https://example.com/image1.jpg", "postId": "clx-post-1" },
-      { "id": "clx-img-2", "url": "https://example.com/image2.jpg", "postId": "clx-post-1" }
+      { "url": "https://example.com/image1.jpg" },
+      { "url": "https://example.com/image2.jpg" }
     ]
   }
 }
@@ -282,22 +280,22 @@ Mendapatkan feed postingan (dari semua pengguna, diurutkan dari yang terbaru).
     {
       "id": "clx-post-2",
       "caption": "From another user",
+      "createdAt": "2026-01-05T15:05:00.000Z",
       "author": {
         "id": "clx-user-2",
         "name": "Jane Smith",
         "profilePictureUrl": "https://example.com/jane.jpg"
       },
       "images": [{ "url": "https://example.com/jane-post.jpg" }],
-      "_count": {
-        "likes": 15,
-        "comments": 3,
-        "reposts": 2
-      },
+      "likesCount": "15",
+      "commentsCount": "3",
+      "repostsCount": "2",
       "isLiked": false
     },
     {
       "id": "clx-post-1",
       "caption": "My new post!",
+      "createdAt": "2026-01-05T15:00:00.000Z",
       "author": {
         "id": "clx...",
         "name": "Johnathan Doe",
@@ -307,11 +305,9 @@ Mendapatkan feed postingan (dari semua pengguna, diurutkan dari yang terbaru).
         { "url": "https://example.com/image1.jpg" },
         { "url": "https://example.com/image2.jpg" }
       ],
-      "_count": {
-        "likes": 1,
-        "comments": 0,
-        "reposts": 0
-      },
+      "likesCount": "1",
+      "commentsCount": "0",
+      "repostsCount": "0",
       "isLiked": true
     }
   ]
@@ -392,8 +388,6 @@ Menambahkan komentar baru pada sebuah postingan.
     "data": {
         "id": "clx-comment-1",
         "text": "This is a great post!",
-        "userId": "clx...",
-        "postId": "clx-post-2",
         "createdAt": "2026-01-05T16:05:00.000Z",
         "user": {
             "id": "clx...",
