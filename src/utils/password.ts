@@ -1,10 +1,10 @@
+import * as bcrypt from 'bcrypt';
+
 export const hashPassword = async (password: string) => {
-  return await Bun.password.hash(password, {
-    algorithm: 'bcrypt',
-    cost: 10,
-  });
+  const saltRounds = 10;
+  return await bcrypt.hash(password, saltRounds);
 };
 
 export const comparePassword = async (password: string, hash: string) => {
-  return await Bun.password.verify(password, hash, 'bcrypt');
+  return await bcrypt.compare(password, hash);
 };
