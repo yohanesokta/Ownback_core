@@ -1,6 +1,6 @@
-import { query } from '../db/client.ts';
+import { query } from '../db/client';
 import type { z } from 'zod';
-import type { createCommentSchema } from '../validations/post.validation.ts';
+import type { createCommentSchema } from '../validations/post.validation';
 import cuid from 'cuid';
 
 export const likeUnlikePostService = async (userId: string, postId: string) => {

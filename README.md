@@ -1,4 +1,4 @@
-# Backend API Media Sosial
+# Backend API Ownback
 
 Ini adalah backend API lengkap untuk aplikasi media sosial kloning Instagram, yang dibuat untuk digunakan oleh client mobile Flutter.
 

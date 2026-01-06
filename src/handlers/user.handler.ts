@@ -4,10 +4,10 @@ import {
   getMyProfileService,
   getUserProfileService,
   updateUserProfileService,
-} from '../services/user.service.ts';
-import { jsonResponse } from '../utils/response.ts';
-import { JwtPayload } from '../utils/jwt.ts';
-import { updateUserSchema } from '../validations/user.validation.ts';
+} from '../services/user.service';
+import { jsonResponse } from '../utils/response';
+import { JwtPayload } from '../utils/jwt';
+import { updateUserSchema } from '../validations/user.validation';
 
 export const getMyProfileHandler = async (c: Context) => {
   try {

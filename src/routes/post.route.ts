@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
-import { authMiddleware } from '../middlewares/auth.middleware.ts';
-import { createPostHandler, getFeedHandler, getPostsByUserHandler } from '../handlers/post.handler.ts';
-import { createCommentHandler, getCommentsHandler, likeUnlikePostHandler, repostHandler } from '../handlers/interaction.handler.ts';
+import { authMiddleware } from '../middlewares/auth.middleware';
+import { createPostHandler, getFeedHandler, getPostsByUserHandler } from '../handlers/post.handler';
+import { createCommentHandler, getCommentsHandler, likeUnlikePostHandler, repostHandler } from '../handlers/interaction.handler';
 
 const posts = new Hono();
 

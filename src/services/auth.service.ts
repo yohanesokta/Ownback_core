@@ -1,8 +1,8 @@
-import { query } from '../db/client.ts';
-import { comparePassword, hashPassword } from '../utils/password.ts';
-import { createToken } from '../utils/jwt.ts';
+import { query } from '../db/client';
+import { comparePassword, hashPassword } from '../utils/password';
+import { createToken } from '../utils/jwt';
 import type { z } from 'zod';
-import type { loginSchema, registerSchema } from '../validations/auth.validation.ts';
+import type { loginSchema, registerSchema } from '../validations/auth.validation';
 import cuid from 'cuid';
 
 export const registerUserService = async (body: z.infer<typeof registerSchema>) => {

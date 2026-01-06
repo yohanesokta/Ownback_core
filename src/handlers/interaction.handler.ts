@@ -1,9 +1,9 @@
 import { Context } from 'hono';
 import { z } from 'zod';
-import { jsonResponse } from '../utils/response.ts';
-import { JwtPayload } from '../utils/jwt.ts';
-import { createCommentSchema } from '../validations/post.validation.ts';
-import { createCommentService, getCommentsService, likeUnlikePostService, repostService } from '../services/interaction.service.ts';
+import { jsonResponse } from '../utils/response';
+import { JwtPayload } from '../utils/jwt';
+import { createCommentSchema } from '../validations/post.validation';
+import { createCommentService, getCommentsService, likeUnlikePostService, repostService } from '../services/interaction.service';
 
 export const likeUnlikePostHandler = async (c: Context) => {
     try {

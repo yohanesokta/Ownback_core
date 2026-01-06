@@ -1,6 +1,6 @@
-import { query } from '../db/client.ts';
+import { query } from '../db/client';
 import type { z } from 'zod';
-import type { updateUserSchema } from '../validations/user.validation.ts';
+import type { updateUserSchema } from '../validations/user.validation';
 
 export const getMyProfileService = async (userId: string) => {
   const { rows: users } = await query(

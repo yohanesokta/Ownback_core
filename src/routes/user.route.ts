@@ -3,8 +3,8 @@ import {
   getMyProfileHandler,
   getUserProfileHandler,
   updateUserProfileHandler,
-} from '../handlers/user.handler.ts';
-import { authMiddleware } from '../middlewares/auth.middleware.ts';
+} from '../handlers/user.handler';
+import { authMiddleware } from '../middlewares/auth.middleware';
 
 const users = new Hono();
 

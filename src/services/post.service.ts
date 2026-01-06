@@ -1,6 +1,6 @@
-import { pool, query } from '../db/client.ts';
+import { pool, query } from '../db/client';
 import type { z } from 'zod';
-import type { createPostSchema } from '../validations/post.validation.ts';
+import type { createPostSchema } from '../validations/post.validation';
 import cuid from 'cuid';
 
 export const createPostService = async (

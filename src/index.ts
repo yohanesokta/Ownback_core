@@ -9,9 +9,9 @@ import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
 
-import auth from './routes/auth.route.ts';
-import users from './routes/user.route.ts';
-import posts from './routes/post.route.ts';
+import auth from './routes/auth.route';
+import users from './routes/user.route';
+import posts from './routes/post.route';
 
 const app = new Hono().basePath('/api');
 

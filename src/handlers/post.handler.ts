@@ -1,9 +1,9 @@
 import { Context } from 'hono';
 import { z } from 'zod';
-import { jsonResponse } from '../utils/response.ts';
-import { JwtPayload } from '../utils/jwt.ts';
-import { createPostSchema } from '../validations/post.validation.ts';
-import { createPostService, getFeedService, getPostsByUserService } from '../services/post.service.ts';
+import { jsonResponse } from '../utils/response';
+import { JwtPayload } from '../utils/jwt';
+import { createPostSchema } from '../validations/post.validation';
+import { createPostService, getFeedService, getPostsByUserService } from '../services/post.service';
 
 export const createPostHandler = async (c: Context) => {
   try {
