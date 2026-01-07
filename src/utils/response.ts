@@ -2,7 +2,7 @@ import { Context } from 'hono';
 
 export const jsonResponse = (
   c: Context,
-  status: number,
+  status: any,
   data: any,
   message: string
 ) => {
